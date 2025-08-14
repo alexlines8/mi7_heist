@@ -58,3 +58,23 @@ main {
     color: #000;
     box-shadow: 0 0 10px #00ff9d;
 }
+
+.camera-feed {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+}
+
+.cam-video {
+    max-width: 100%;
+    border: 2px solid #00ff9d;
+    box-shadow: 0 0 15px #00ff9d;
+}
+
+.locked-message {
+    text-align: center;
+    margin-top: 5rem;
+    color: #ff4d4d;
+    text-shadow: 0 0 10px #ff4d4d;
+}
