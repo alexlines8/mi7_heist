@@ -58,12 +58,13 @@
         callBtn.addEventListener('click', () => {
             const number = display.textContent.trim();
             if (number) {
-                alert(`Calling ${number}...`);
+                display.textContent = `Calling ${number}...`;
             } else {
-                alert("Please enter a number first!");
+                display.textContent = 'No number entered';
             }
         });
     </script>
+
 
 
 </body>
