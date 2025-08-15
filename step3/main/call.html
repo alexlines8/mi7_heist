@@ -45,6 +45,11 @@
         const clearBtn = document.getElementById('clear-btn');
         const callBtn = document.getElementById('call-btn');
 
+        const hangupSound = new Audio('assets/audio/hangup.mp3');
+        const specialSound = new Audio('assets/audio/call.mp3');
+
+        const specialNumber = "07345137852"; // remove spaces to match input
+
         buttons.forEach(button => {
             button.addEventListener('click', () => {
                 display.textContent += button.getAttribute('data-num');
@@ -56,14 +61,31 @@
         });
 
         callBtn.addEventListener('click', () => {
-            const number = display.textContent.trim();
+            let number = display.textContent.trim().replace(/\s+/g, ''); // remove any spaces
             if (number) {
                 display.textContent = `Calling ${number}...`;
+
+                if (number === specialNumber) {
+                    specialSound.currentTime = 0;
+                    specialSound.play();
+                    specialSound.onended = () => {
+                        display.textContent = '';
+                    };
+                } else {
+                    hangupSound.currentTime = 0;
+                    hangupSound.play();
+                    hangupSound.onended = () => {
+                        display.textContent = '';
+                    };
+                }
             } else {
                 display.textContent = 'No number entered';
             }
         });
     </script>
+
+
+
 
 
 
