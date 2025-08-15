@@ -4,6 +4,8 @@ body {
     background-color: #0a0a0a;
     color: #00ff9d;
     overflow-x: hidden;
+    overflow-y: hidden;
+    height: 100vh;
 }
 
 header {
@@ -29,7 +31,8 @@ nav a:hover {
 main {
     padding: 2rem;
     text-align: center;
-    min-height: 100vh; /* fills the screen */
+    height: calc(100vh - 80px); /* Account for header */
+    overflow-y: auto;
 }
 
 /* Mission Brief Styles */
