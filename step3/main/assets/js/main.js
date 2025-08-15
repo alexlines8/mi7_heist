@@ -41,8 +41,7 @@ window.addEventListener('beforeunload', () => {
 
 /* Audio Player Functionality */
 document.addEventListener('DOMContentLoaded', function() {
-    // Create audio object using JavaScript (avoids CORS issues)
-    const audio = new Audio('assets/audio/missionBrief.mp3');
+    const audio = document.getElementById('missionAudio');
     const playButton = document.getElementById('playButton');
     const audioControls = document.getElementById('audioControls');
     const progressFill = document.getElementById('progressFill');
@@ -51,7 +50,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const playIcon = document.querySelector('.play-icon');
     const playText = document.querySelector('.play-text');
 
-    if (!playButton) return; // Exit if elements don't exist on this page
+    if (!audio || !playButton) return; // Exit if elements don't exist on this page
 
     let isPlaying = false;
 
