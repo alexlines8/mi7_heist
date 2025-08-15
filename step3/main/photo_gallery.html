@@ -8,7 +8,7 @@
 </head>
 <link rel="stylesheet" href="assets/css/style.css" />
 <style>
-    /* ===== Base theme (from your layout) ===== */
+
     body {
       margin: 0;
       font-family: 'Courier New', monospace;
@@ -42,11 +42,10 @@
     .gallery {
       display: grid;
       gap: 12px;
-      grid-template-columns: repeat(6, minmax(0, 1fr)); /* 6 wide on large screens */
+      grid-template-columns: repeat(6, minmax(0, 1fr)); 
       padding-bottom: 10rem;
     }
 
-    /* Responsive breakpoints */
     @media (max-width: 1400px) {
       .gallery { grid-template-columns: repeat(5, 1fr); }
     }
@@ -80,8 +79,8 @@
 
     .thumb {
       width: 100%;
-      aspect-ratio: 1 / 1;        /* perfect square tiles */
-      object-fit: cover;          /* crops nicely */
+      aspect-ratio: 1 / 1;        
+      object-fit: cover;         
       display: block;
       filter: saturate(1.1) contrast(1.05);
     }
@@ -109,7 +108,7 @@
       opacity: 0.9;
     }
 
-    /* Optional page title styling */
+
     .page-title {
       margin: 0 0 1.25rem 0;
       font-size: 1.3rem;
@@ -134,15 +133,7 @@
 
   <main>
     <h1 class="page-title">Photo Archives // Gallery</h1>
-<<<<<<< HEAD
-=======
 
-    <!--
-      Drop your images into assets/images/ and list them below.
-      The filename will auto-appear under each photo.
-      If you want a custom caption instead, add data-caption="Your caption".
-    -->
->>>>>>> 52458ff4db89b8d66b7bb8af8928eeb6e6237225
     <section class="gallery" id="gallery">
       <figure>
         <a href="assets/photos/IMG_4115.JPG" target="_blank" rel="noopener">
@@ -442,21 +433,18 @@
           <span class="open-icon">↗</span>
         </figcaption>
       </figure>
-      <!-- Add more figures as needed; they'll wrap to new rows automatically. -->
     </section>
     
   </main>
 
 
   <script type="module">
-    // Auto-generate filename captions from the image src, unless a custom caption is provided.
     const figures = document.querySelectorAll('#gallery figure');
 
     figures.forEach(figure => {
       const img = figure.querySelector('img');
       const cap = figure.querySelector('.filename');
 
-      // If developer set a custom caption, use it
       const custom = img.getAttribute('data-caption');
       if (custom) {
         cap.textContent = custom;
