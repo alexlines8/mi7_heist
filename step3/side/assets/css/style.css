@@ -78,3 +78,9 @@ main {
     color: #ff4d4d;
     text-shadow: 0 0 10px #ff4d4d;
 }
+
+.cam-image {
+    max-width: 100%;
+    border: 2px solid #00ff9d;
+    box-shadow: 0 0 15px #00ff9d;
+}
