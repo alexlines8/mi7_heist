@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Virtual Cyber Game - Messages</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/messages.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="fileslogin.html">File server</a>
+            <a href="location.html">Location</a>
+            <a href="messages.html">Messages</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="messages-container">
+            <div class="messages-header">
+                <h1>Encrypted Communications</h1>
+                <div class="status-indicator">
+                    <span class="status-dot"></span>
+                    <span class="status-text">SECURE CHANNEL</span>
+                </div>
+            </div>
+
+            <div class="messages-thread" id="messagesThread">
+                <!-- Messages will be populated by JavaScript -->
+            </div>
+
+            <div class="message-composer">
+                <input type="text" id="messageInput" placeholder="Type encrypted message..." maxlength="500">
+                <button id="sendButton" type="button">TRANSMIT</button>
+            </div>
+        </section>
+    </main>
+
+    <script src="assets/js/messages.js"></script>
+</body>
+</html>
