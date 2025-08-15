@@ -1,0 +1,27 @@
+.contacts-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 2rem;
+    justify-content: center;
+}
+
+.contact-card {
+    background-color: #111;
+    border: 2px solid #00ff9d;
+    padding: 1rem 1.5rem;
+    border-radius: 10px;
+    width: 250px;
+    box-shadow: 0 0 10px #00ff9d;
+}
+
+.contact-card h3 {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    color: #00ff9d;
+}
+
+.contact-card p {
+    margin: 0.25rem 0;
+    color: #ccc;
+}
