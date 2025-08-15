@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Phone</title>
+<link rel="stylesheet" href="assets/css/style.css"> <!-- Your site CSS -->
+<link rel="stylesheet" href="assets/css/phone.css"> <!-- Separate phone-specific CSS -->
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="fileslogin.html">File server</a>
+            <a href="location.html">Location</a>
+            <a href="messages.html">Messages</a>
+            <a href="contacts.html">Contacts</a>
+            <a href="call.html">Phone</a>
+            <a href="photo_gallery.html">Gallery</a>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Phone</h2>
+        <div class="phone-body">
+            <div class="phone-screen">
+                <span id="phone-number"></span>
+            </div>
+            <div class="phone-keypad">
+                <button data-num="1">1</button>
+                <button data-num="2">2</button>
+                <button data-num="3">3</button>
+                <button data-num="4">4</button>
+                <button data-num="5">5</button>
+                <button data-num="6">6</button>
+                <button data-num="7">7</button>
+                <button data-num="8">8</button>
+                <button data-num="9">9</button>
+                <button id="clear-btn">Clear</button>
+                <button data-num="0">0</button>
+                <button id="call-btn" class="call-btn">Call</button>
+            </div>
+
+        </div>
+    </main>
+
+    <script>
+        const display = document.getElementById('phone-number');
+        const buttons = document.querySelectorAll('.phone-keypad button[data-num]');
+        const clearBtn = document.getElementById('clear-btn');
+        const callBtn = document.getElementById('call-btn');
+
+        const hangupSound = new Audio('assets/audio/hangup.mp3');
+        const specialSound = new Audio('assets/audio/call.mp3');
+
+        const specialNumber = "07345137852"; // remove spaces to match input
+
+        buttons.forEach(button => {
+            button.addEventListener('click', () => {
+                display.textContent += button.getAttribute('data-num');
+            });
+        });
+
+        clearBtn.addEventListener('click', () => {
+            display.textContent = '';
+        });
+
+        callBtn.addEventListener('click', () => {
+            let number = display.textContent.trim().replace(/\s+/g, ''); // remove any spaces
+            if (number) {
+                display.textContent = `Calling ${number}...`;
+
+                if (number === specialNumber) {
+                    specialSound.currentTime = 0;
+                    specialSound.play();
+                    specialSound.onended = () => {
+                        display.textContent = '';
+                    };
+                } else {
+                    hangupSound.currentTime = 0;
+                    hangupSound.play();
+                    hangupSound.onended = () => {
+                        display.textContent = '';
+                    };
+                }
+            } else {
+                display.textContent = 'No number entered';
+            }
+        });
+    </script>
+
+
+
+
+
+
+</body>
+</html>
+
