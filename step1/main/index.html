@@ -15,27 +15,10 @@
     </header>
 
     <main>
-        <div class="mission-brief-container">
-            <h1 class="mission-title">Mission Brief</h1>
-            <div class="audio-player">
-                <audio id="missionAudio" preload="none">
-                    <source src="assets/audio/missionBrief.mp3" type="audio/mpeg">
-                    Your browser does not support the audio element.
-                </audio>
-                <button id="playButton" class="play-btn">
-                    <span class="play-icon">▶</span>
-                    <span class="play-text">Play Mission Brief</span>
-                </button>
-                <div class="audio-controls" id="audioControls" style="display: none;">
-                    <div class="progress-container">
-                        <div class="progress-bar">
-                            <div class="progress-fill" id="progressFill"></div>
-                        </div>
-                        <span class="time-display">
-                            <span id="currentTime">0:00</span> / <span id="duration">0:00</span>
-                        </span>
-                    </div>
-                </div>
+        <div class="typewriter-container">
+            <h1 class="typewriter-title">Mission Brief</h1>
+            <div class="typewriter-text" id="typewriter-text">
+                <span class="cursor" id="cursor"></span>
             </div>
         </div>
     </main>

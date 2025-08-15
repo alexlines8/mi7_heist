@@ -39,77 +39,44 @@ window.addEventListener('beforeunload', () => {
     client.disconnect();
 });
 
-/* Audio Player Functionality */
+/* Typewriter Effect */
 document.addEventListener('DOMContentLoaded', function() {
-    const audio = document.getElementById('missionAudio');
-    const playButton = document.getElementById('playButton');
-    const audioControls = document.getElementById('audioControls');
-    const progressFill = document.getElementById('progressFill');
-    const currentTimeSpan = document.getElementById('currentTime');
-    const durationSpan = document.getElementById('duration');
-    const playIcon = document.querySelector('.play-icon');
-    const playText = document.querySelector('.play-text');
+    const typewriterText = document.getElementById('typewriter-text');
+    const cursor = document.getElementById('cursor');
+    
+    if (!typewriterText) return; // Exit if elements don't exist on this page
+    
+    const missionText = `
+    One of our agents has sent us an image of what we beleive to be the perpetrator's phone.
+    We need you to identify the location of the phone and bring it in for analysis.
+    `;
 
-    if (!audio || !playButton) return; // Exit if elements don't exist on this page
+    let textIndex = 0;
+    let charIndex = 0;
+    const typingSpeed = 50; // milliseconds between characters
+    const paragraphDelay = 800; // delay between paragraphs
 
-    let isPlaying = false;
-
-    // Play/Pause functionality
-    playButton.addEventListener('click', function() {
-        if (isPlaying) {
-            audio.pause();
-            playIcon.textContent = '▶';
-            playText.textContent = 'Play Mission Brief';
-            playButton.classList.remove('playing');
-            isPlaying = false;
-        } else {
-            audio.play().catch(e => {
-                console.error('Error playing audio:', e);
-                alert('Unable to play audio file. Please check if missionBrief.mp3 exists in assets/audio/');
-            });
-            playIcon.textContent = '⏸';
-            playText.textContent = 'Pause Mission Brief';
-            playButton.classList.add('playing');
-            audioControls.style.display = 'block';
-            isPlaying = true;
-        }
-    });
-
-    // Update progress and time
-    audio.addEventListener('timeupdate', function() {
-        if (audio.duration) {
-            const progress = (audio.currentTime / audio.duration) * 100;
-            progressFill.style.width = progress + '%';
+    function typeWriter() {
+        if (textIndex < missionText.length) {
+            const currentChar = missionText[textIndex];
             
-            currentTimeSpan.textContent = formatTime(audio.currentTime);
-            durationSpan.textContent = formatTime(audio.duration);
+            // Remove cursor temporarily
+            cursor.remove();
+            
+            // Add character
+            typewriterText.insertAdjacentText('beforeend', currentChar);
+            
+            // Add cursor back
+            typewriterText.appendChild(cursor);
+            
+            textIndex++;
+            
+            // Add delay for new lines
+            const delay = currentChar === '\n' ? paragraphDelay : typingSpeed;
+            setTimeout(typeWriter, delay);
         }
-    });
-
-    // Handle audio end
-    audio.addEventListener('ended', function() {
-        playIcon.textContent = '▶';
-        playText.textContent = 'Play Mission Brief';
-        playButton.classList.remove('playing');
-        progressFill.style.width = '0%';
-        isPlaying = false;
-    });
-
-    // Click on progress bar to seek
-    document.querySelector('.progress-bar')?.addEventListener('click', function(e) {
-        if (audio.duration) {
-            const rect = this.getBoundingClientRect();
-            const clickX = e.clientX - rect.left;
-            const width = rect.width;
-            const clickTime = (clickX / width) * audio.duration;
-            audio.currentTime = clickTime;
-        }
-    });
-
-    // Format time helper function
-    function formatTime(seconds) {
-        const mins = Math.floor(seconds / 60);
-        const secs = Math.floor(seconds % 60);
-        return `${mins}:${secs.toString().padStart(2, '0')}`;
     }
+
+    // Start typing after a short delay
+    setTimeout(typeWriter, 1000);
 });
